@@ -1,0 +1,9 @@
+name: natural-selection
+channels:
+  - anaconda
+  - bioconda
+  - conda-forge
+dependencies:
+  - emboss
+  - seqkit
+  - biopython
