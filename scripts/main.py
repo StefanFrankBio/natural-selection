@@ -26,10 +26,14 @@ def main():
     substitutions = nstools.find_substitutions(reference, sequence)
     trans_table = nstools.build_trans_table()
     synonymity = nstools.classify_substitutions(substitutions, codons, trans_table)
-    dNdS_ratio = nstools.dNdS(synonymity, synonymous_sites)
+    nstools.write_seperated(
+        f"{args.output}/{alignment_records[0].id}",
+        alignment_records[0].id,
+        substitutions,
+        insert_records,
+        deletion_records,
+        ambig_records)
 
-    with open(f"{args.output}/{alignment_records[0].id}", "w") as handle:
-        print(alignment_records[0].id, substitutions, insert_records, deletion_records, ambig_records, sep="\t", file=handle)
 
 if __name__ == "__main__":
     main()

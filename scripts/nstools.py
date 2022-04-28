@@ -113,3 +113,16 @@ def sqlite_test(id, dNdS_ratio):
     cur.execute(f"UPDATE metadata SET dNdS = '{dNdS_ratio}' WHERE ID = '{id}'")
     con.commit()
     con.close()
+
+
+def write_seperated(filepath: str, *args: list, seperator="\t", multi=False) -> None:
+    with open(filepath, "w") as handle:
+        if multi == True:
+            for row in zip(*args):
+                print(*row, sep=seperator, file=handle)
+        else:
+                print(*args, sep=seperator, file=handle)
+
+
+if __name__ == "__main__":
+    pass
