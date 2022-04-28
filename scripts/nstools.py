@@ -1,4 +1,3 @@
-from weakref import ref
 from Bio import SeqIO
 import re
 import itertools
@@ -183,9 +182,4 @@ def reconstruct_variant(reference: str, variant_record: list) -> str:
 
 
 if __name__ == "__main__":
-    reference = test_reference("d", 10)
-    variant_record = test_variant_record(reference, "d", 10, 3, True)
-    variant = reconstruct_variant(reference, variant_record)
-    print(reference)
-    print(variant_record)
-    print(variant)
+    pass
