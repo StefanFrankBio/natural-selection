@@ -2,6 +2,7 @@ from Bio import SeqIO
 import re
 import itertools
 import pickle
+import random
 
 
 def read_fasta(filepath, multi=False):
@@ -126,6 +127,42 @@ def write_seperated(filepath: str, args: list, seperator="\t") -> None:
 def sort_by_element(data, idx):
     data.sort(key=lambda x: x[idx])
     return data
+
+
+def test_reference(type: str, length: int) -> str:
+    if type == "d":
+        nucleotides = "ACGT"
+        reference = "".join(random.choices(nucleotides, k=length))
+    elif type == "p":
+        aminoacids = "ARNDCQEGHILKMFPSTWYV"
+        reference = "".join(random.choices(aminoacids, k=length))
+    else:
+        pass
+    return reference
+
+
+def test_variant_record(reference: str, type: str, length: int, variations: int, indels: bool) -> list:
+    positions = sorted(random.sample(range(length), k=variations))
+    ref_column = [reference[i] for i in positions]
+    if type == "d":
+        var_symbols = "ACGTN"
+        var_column = random.choices(var_symbols, k=variations)
+    elif type == "p":
+        var_symbols = "ARNDCQEGHILKMFPSTWYVX"
+        var_column = random.choices(var_symbols, k=variations)
+    if indels == True:
+        indel_count = random.randint(1, variations)
+        indel_positions = random.sample(range(variations), k=indel_count)
+        for i in indel_positions:
+            ins_or_del = random.randint(0, 1)
+            if ins_or_del == 0:
+                ref_column[i] = "ins"
+            else:
+                var_column[i] = "del"
+    else:
+        pass
+    variant_record = list(zip(positions, ref_column, var_column))
+    return variant_record
 
 
 if __name__ == "__main__":
