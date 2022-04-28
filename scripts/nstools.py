@@ -37,7 +37,7 @@ def handle_inserts(reference, sequence):
     insert_positions = [m.start() for m in re.finditer("-", reference)]
     insert_records = []
     for i in reversed(insert_positions):
-        insert_records.append((i,sequence[i]))
+        insert_records.append((i, "ins", sequence[i]))
         del sequence[i]
     return "".join(sequence), insert_records
 
@@ -47,15 +47,17 @@ def handle_deletions(reference, sequence):
     sequence = list(sequence)
     deletion_records = []
     for i in deletion_positions:
-        deletion_records.append((reference[i],i))
+        deletion_records.append((i, reference[i], "del"))
         sequence[i] = reference[i]
     return "".join(sequence), deletion_records
 
 
 def handle_ambiguities(reference, sequence):
-    ambig_records = list([m.start() for m in re.finditer("N", sequence)])
+    ambig_positions = list([m.start() for m in re.finditer("N", sequence)])
     sequence = list(sequence)
-    for i in ambig_records:
+    ambig_records = []
+    for i in ambig_positions:
+        ambig_records.append((i, reference[i], "N"))
         sequence[i] = reference[i]
     return "".join(sequence), ambig_records
 
@@ -72,7 +74,7 @@ def unpickle_data(filepath):
 
 def find_substitutions(sequence1, sequence2):
     xxx = zip(sequence1, sequence2)
-    return [(n[0], i, n[1]) for i, n in enumerate(xxx) if n[0] != n[1]]
+    return [(i, n[0], n[1]) for i, n in enumerate(xxx) if n[0] != n[1]]
 
 
 def build_trans_table():
@@ -85,7 +87,7 @@ def build_trans_table():
 
 def classify_substitutions(substitutions, codons, trans_table):
     classification = []
-    for _, position, nucleotide in substitutions:
+    for position, _, nucleotide in substitutions:
         codon_idx = position // 3
         if codon_idx < len(codons):
             original_codon = codons[codon_idx]

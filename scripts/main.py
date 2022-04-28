@@ -24,15 +24,13 @@ def main():
     codons = nstools.unpickle_data(args.codons)
     synonymous_sites = nstools.unpickle_data(args.sites)
     substitutions = nstools.find_substitutions(reference, sequence)
+    variant_records = substitutions + insert_records + deletion_records + ambig_records
     trans_table = nstools.build_trans_table()
     synonymity = nstools.classify_substitutions(substitutions, codons, trans_table)
     nstools.write_seperated(
         f"{args.output}/{alignment_records[0].id}",
         alignment_records[0].id,
-        substitutions,
-        insert_records,
-        deletion_records,
-        ambig_records)
+        variant_records)
 
 
 if __name__ == "__main__":
