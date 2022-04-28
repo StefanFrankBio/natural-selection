@@ -182,7 +182,6 @@ def reconstruct_variant(reference: str, variant_record: list) -> str:
     return variant
 
 
-
 if __name__ == "__main__":
     reference = test_reference("d", 10)
     variant_record = test_variant_record(reference, "d", 10, 3, True)
