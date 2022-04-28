@@ -18,5 +18,6 @@ rm -r $SPLIT_DIR
 python scripts/synonymous_sites.py --input $REFERENCE --codons $REF_CODONS --sites $SYN_SITES
 mkdir $SUBS_DIR
 find $ALIGN_DIR -type f | xargs --max-args=1 --replace=1 --max-procs=$THREADS python scripts/main.py --input 1 --reference $REFERENCE --codons $REF_CODONS --sites $SYN_SITES --output $SUBS_DIR
+rm -r $ALIGN_DIR
 find $SUBS_DIR -type f -exec cat {} + > "${OUT_DIR}/all_substitutions.tsv"
 rm -r $SUBS_DIR
