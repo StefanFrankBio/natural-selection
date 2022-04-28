@@ -117,13 +117,10 @@ def sqlite_test(id, dNdS_ratio):
     con.close()
 
 
-def write_seperated(filepath: str, *args: list, seperator="\t", multi=False) -> None:
+def write_seperated(filepath: str, args: list, seperator="\t") -> None:
     with open(filepath, "w") as handle:
-        if multi == True:
-            for row in zip(*args):
-                print(*row, sep=seperator, file=handle)
-        else:
-                print(*args, sep=seperator, file=handle)
+        for row in args:
+            print(*row, sep=seperator, file=handle)    
 
 
 if __name__ == "__main__":
