@@ -1,3 +1,4 @@
+from weakref import ref
 from Bio import SeqIO
 import re
 import itertools
@@ -165,5 +166,27 @@ def test_variant_record(reference: str, type: str, length: int, variations: int,
     return variant_record
 
 
+def reconstruct_variant(reference: str, variant_record: list) -> str:
+    variant = list(reference)
+    for variation in variant_record[::-1]:
+        position = variation[0]
+        ref_symbol = variation[1]
+        var_symbol = variation[2] 
+        if ref_symbol == "ins":
+            variant.insert(position, var_symbol)
+        elif var_symbol == "del":
+            del variant[position]
+        else:
+            variant[position] = var_symbol
+    variant = "".join(variant)
+    return variant
+
+
+
 if __name__ == "__main__":
-    pass
+    reference = test_reference("d", 10)
+    variant_record = test_variant_record(reference, "d", 10, 3, True)
+    variant = reconstruct_variant(reference, variant_record)
+    print(reference)
+    print(variant_record)
+    print(variant)
