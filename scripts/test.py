@@ -14,6 +14,7 @@ def parse_args():
     parser.add_argument("-i", "--indels", action=argparse.BooleanOptionalAction)
     parser.add_argument("-r", "--reference")
     parser.add_argument("-o", "--output")
+    parser.add_argument("-e", "--record")
     return parser.parse_args()
 
     
@@ -26,6 +27,7 @@ def main():
     with open(args.output, "w") as handle:
         for i in range(args.number):
             variant_record = nstools.test_variant_record(reference, args.type, args.length, args.variations, args.indels)
+            nstools.write_seperated(f"{args.record}/test_variant_{i}", variant_record)
             variant = nstools.reconstruct_variant(reference, variant_record)
             variant = SeqRecord(Seq(variant), id=f"test_variant_{i}", description="")
             SeqIO.write(variant, handle, "fasta")
