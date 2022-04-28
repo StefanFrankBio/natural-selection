@@ -21,6 +21,7 @@ def main():
     sequence, ambig_records = nstools.handle_ambiguities(reference, sequence)
     substitutions = nstools.find_substitutions(reference, sequence)
     variant_records = substitutions + insert_records + deletion_records + ambig_records
+    variant_records = nstools.sort_by_element(variant_records, 0)
     nstools.write_seperated(f"{args.output}/{alignment_records[0].id}", variant_records)
 
 

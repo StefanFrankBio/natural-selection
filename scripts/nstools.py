@@ -120,7 +120,12 @@ def sqlite_test(id, dNdS_ratio):
 def write_seperated(filepath: str, args: list, seperator="\t") -> None:
     with open(filepath, "w") as handle:
         for row in args:
-            print(*row, sep=seperator, file=handle)    
+            print(*row, sep=seperator, file=handle)
+
+
+def sort_by_element(data, idx):
+    data.sort(key=lambda x: x[idx])
+    return data
 
 
 if __name__ == "__main__":
