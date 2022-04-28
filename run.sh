@@ -17,5 +17,5 @@ rm -r $SPLIT_DIR
 python scripts/synonymous_sites.py --input $REFERENCE --codons $REF_CODONS --sites $SYN_SITES
 rm -r $VR_DIR
 mkdir $VR_DIR
-find $ALIGN_DIR -type f | xargs --max-args=1 --replace=1 --max-procs=$THREADS python scripts/main.py --input 1 --reference $REFERENCE --output $VR_DIR
+find $ALIGN_DIR -type f | xargs --max-args=1 --replace=1 --max-procs=$THREADS python scripts/variant_record.py --input 1 --reference $REFERENCE --output $VR_DIR
 rm -r $ALIGN_DIR
