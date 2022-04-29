@@ -25,7 +25,7 @@
     - Add functionality to annotate genomes
 
 ## Research Questions
-How high is the likelihood for a nonsynonymous substitution to occure at a nonsynonymous site?
+How high is the likelihood for a nonsynonymous substitution to occur at a nonsynonymous site?
 
 How many nonsynonymous substitutions would be expected for a given sequence?
 
@@ -35,4 +35,4 @@ Do nonsynonymous substitutions spread in a similar manner to nonsynonymous sites
 
 Can records for multiple variants be combined to calculate dN/dS for a metadata range?
 
-Can dN/dS of noncoding regions be used to establish baseline values for dN and dS and is this useful for error correction?
+Can dN/dS of non-coding regions be used to establish baseline values for dN and dS and is this useful for error correction or significance?
