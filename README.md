@@ -5,6 +5,7 @@
 - Add type hinting to functions
 
 ## Next Steps
+- Use SNP-Caller / Variant Caller instead of manually generating variant records
 - In run.sh add ability to handle individual fastas instead of multifasta for variant sequences
     - write test variants to individual files instead of multifasta
 - In run.sh move removal of previous analysis data to front of script
