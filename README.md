@@ -5,7 +5,6 @@
 - Add type hinting to functions
 
 ## Next Steps
-- Use SNP-Caller / Variant Caller instead of manually generating variant records
 - In run.sh add ability to handle individual fastas instead of multifasta for variant sequences
     - write test variants to individual files instead of multifasta
 - In run.sh move removal of previous analysis data to front of script
@@ -37,3 +36,5 @@ Do nonsynonymous substitutions spread in a similar manner to nonsynonymous sites
 Can records for multiple variants be combined to calculate dN/dS for a metadata range?
 
 Can dN/dS of non-coding regions be used to establish baseline values for dN and dS and is this useful for error correction or significance?
+
+Can SNP-/Variant-Calling be used to generate variant records instead of the current approach?
