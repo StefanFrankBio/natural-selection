@@ -17,8 +17,8 @@ def main():
     variant_record = nstools.read_variant_records(f"../natural-selection-data/variant_records/{test_variant.id}")
     variant = nstools.reconstruct_variant(reference.seq, variant_record)
     if (variant == test_variant.seq) == False:
-        print(test_variant.id)
-
+        print(f">{test_variant.id}")
+        print(variant)
 
 if __name__ == "__main__":
     main()

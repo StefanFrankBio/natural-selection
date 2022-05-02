@@ -3,6 +3,9 @@
 - test_variant_records() can produce substitutions from one base to itself
 - test.py main() looks messy
 - Add type hinting to functions
+- Testing: Instead of Gap-Match-Gap Stretcher Scoring prefers Gap-GapExtension-Mismatch. Leads to failed tests. Is that a Problem?
+    - Setting the gapextension score equal the gapopen score in the stretcher option seems to prevent tests from failing
+- In random variable records generated turing testing, a mismatch and an insert at consecutive positions might be switched around by stretcher
 
 ## Next Steps
 - Add mean position of nonsynonymous sites vs mean position of nonsynonymous substitutions as additional metric
@@ -10,7 +13,7 @@
     - <del>write test variants to individual files instead of multifasta</del>
 - <del>In run.sh move removal of previous analysis data to front of script</del>
 - Add function that writes (multi-)fasta files using Bio.SeqIO
-- Reconstruct variant sequences from variant records and compare with test variant sequence
+- <del>Reconstruct variant sequences from variant records and compare with test variant sequence</del>
     - Automate testing on github
 - Build SQL database and add variant records, two approaches:
     - Either one table each per variant
@@ -24,6 +27,7 @@
 - Add functionality to calculate dN/dS for sliding window over genome
 - Add functionality to read gene locations from annotation and calculate dN/dS for them
     - Add functionality to annotate genomes
+- Add testing based on a set of static sequences
 
 ## Research Questions
 How high is the likelihood for a nonsynonymous substitution to occur at a nonsynonymous site?

@@ -40,9 +40,11 @@ def handle_inserts(reference, sequence):
     sequence = list(sequence)
     insert_positions = [m.start() for m in re.finditer("-", reference)]
     insert_records = []
-    for i in reversed(insert_positions):
-        insert_records.append((i, "ins", sequence[i]))
-        del sequence[i]
+    offset = 0
+    for i in insert_positions:
+        insert_records.append((i-offset, "ins", sequence[i-offset]))
+        del sequence[i-offset]
+        offset += 1
     return "".join(sequence), insert_records
 
 
