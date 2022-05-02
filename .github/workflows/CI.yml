@@ -1,18 +1,18 @@
-name: CI
-
-on:
-  push:
-    branches: [ main ]
 jobs:
-  example-1:
-    name: Ex1
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-      - name: Conda info
+  example-3:
+    name: Ex3 Linux
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
         shell: bash -l {0}
-        run: conda info
+    steps:
+      - uses: actions/checkout@v3
+      - uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          activate-environment: anaconda-client-env
+          environment-file: environment.yml
+          python-version: 3.5
+          auto-activate-base: false
+      - run: |
+          conda info
+          conda list
