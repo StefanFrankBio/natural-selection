@@ -20,7 +20,7 @@ def parse_args():
     
 def main():
     args = parse_args()
-    reference = nstools.test_reference(args.type, args.length)
+    reference = nstools.generate_sequence(args.type, args.length)
     reference = SeqRecord(Seq(reference), id="test_reference", description="")
     with open(args.reference, "w") as handle:
         SeqIO.write(reference, handle, "fasta")

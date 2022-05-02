@@ -129,7 +129,7 @@ def sort_by_element(data, idx):
     return data
 
 
-def test_reference(type: str, length: int) -> str:
+def generate_sequence(type: str, length: int) -> str:
     if type == "d":
         nucleotides = "ACGT"
         reference = "".join(random.choices(nucleotides, k=length))
