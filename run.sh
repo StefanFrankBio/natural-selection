@@ -19,7 +19,7 @@ mkdir $VARIANT_DIR
 mkdir $TEST_VR_DIR
 mkdir $ALIGN_DIR
 mkdir $VR_DIR
-python scripts/test.py -l $TEST_LEN -t $TEST_TYPE -n $TEST_NUMBER -v $TEST_VARIATIONS -i -o $VARIANT_DIR -r $REFERENCE -e $TEST_VR_DIR
+python scripts/generate_testdata.py -l $TEST_LEN -t $TEST_TYPE -n $TEST_NUMBER -v $TEST_VARIATIONS -i -o $VARIANT_DIR -r $REFERENCE -e $TEST_VR_DIR
 find $VARIANT_DIR -type f | xargs -n 1 --max-procs=$THREADS stretcher -bsequence $REFERENCE -adirectory3 $ALIGN_DIR -aformat fasta -auto
 find $ALIGN_DIR -type f | xargs --max-args=1 --replace=1 --max-procs=$THREADS python scripts/variant_record.py --input 1 --reference $REFERENCE --output $VR_DIR
 
