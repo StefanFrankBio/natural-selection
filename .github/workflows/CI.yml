@@ -9,5 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+        activate-environment: natural-selection
+        environment-file: environment.yml
+        auto-activate-base: false
       - name: test
         run: bash run.sh ../natural-selection-data 12
