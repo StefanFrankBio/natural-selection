@@ -24,8 +24,8 @@ def main():
     reference = SeqRecord(Seq(reference), id="test_reference", description="")
     with open(args.reference, "w") as handle:
         SeqIO.write(reference, handle, "fasta")
-    with open(args.output, "w") as handle:
-        for i in range(args.number):
+    for i in range(args.number):
+        with open(f"{args.output}/test_variant_{i}", "w") as handle:
             variant_record = nstools.test_variant_record(reference, args.type, args.length, args.variations, args.indels)
             nstools.write_seperated(f"{args.record}/test_variant_{i}", variant_record)
             variant = nstools.reconstruct_variant(reference, variant_record)
