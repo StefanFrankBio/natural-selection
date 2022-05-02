@@ -3,9 +3,12 @@ import re
 import itertools
 import pickle
 import random
+from numpy import record
+
+from pyparsing import line
 
 
-def read_fasta(filepath, multi=False):
+def read_fasta(filepath: str, multi=False):
     if multi == False:
         return next(SeqIO.parse(filepath, "fasta"))
     else:
@@ -179,6 +182,15 @@ def reconstruct_variant(reference: str, variant_record: list) -> str:
             variant[position] = var_symbol
     variant = "".join(variant)
     return variant
+
+
+def read_variant_records(filepath: str) -> list:
+    with open(filepath) as handle:
+        variant_record = handle.readlines()
+    variant_record = [line[:-1].split("\t") for line in variant_record]
+    for variantion in variant_record:
+        variantion[0] = int(variantion[0])
+    return variant_record
 
 
 if __name__ == "__main__":

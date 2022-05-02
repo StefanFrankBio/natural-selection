@@ -6,11 +6,11 @@
 
 ## Next Steps
 - Add mean position of nonsynonymous sites vs mean position of nonsynonymous substitutions as additional metric
-- In run.sh add ability to handle individual fastas instead of multifasta for variant sequences
-    - write test variants to individual files instead of multifasta
+- <del>In run.sh add ability to handle individual fastas instead of multifasta for variant sequences</del>
+    - <del>write test variants to individual files instead of multifasta</del>
 - <del>In run.sh move removal of previous analysis data to front of script</del>
 - Add function that writes (multi-)fasta files using Bio.SeqIO
-- Reconstruct variants from variant records and compare with test variant records
+- Reconstruct variant sequences from variant records and compare with test variant sequence
     - Automate testing on github
 - Build SQL database and add variant records, two approaches:
     - Either one table each per variant
