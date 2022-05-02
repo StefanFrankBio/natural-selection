@@ -3,9 +3,6 @@ import re
 import itertools
 import pickle
 import random
-from numpy import record
-
-from pyparsing import line
 
 
 def read_fasta(filepath: str, multi=False):

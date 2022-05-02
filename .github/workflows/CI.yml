@@ -20,6 +20,4 @@ jobs:
           python-version: 3.9
           auto-activate-base: false
       - run: |
-            bash run.sh ../natural-selection-data 12
-            conda info
-            conda list
+            bash run.sh ../natural-selection-data 1
