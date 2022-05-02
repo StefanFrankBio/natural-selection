@@ -29,3 +29,5 @@ find $VARIANT_DIR -type f | xargs --max-args=1 --replace=1 --max-procs=$THREADS 
 #seqkit split -i -2 -O $SPLIT_DIR $VARIANT_DIR
 #rm "${VARIANT_DIR}.seqkit.fai"
 #rm -r $SPLIT_DIR
+
+exit 1
