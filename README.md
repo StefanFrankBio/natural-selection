@@ -5,6 +5,7 @@
 - Add type hinting to functions
 
 ## Next Steps
+- Add mean position of nonsynonymous sites vs mean position of nonsynonymous substitutions as additional metric
 - In run.sh add ability to handle individual fastas instead of multifasta for variant sequences
     - write test variants to individual files instead of multifasta
 - In run.sh move removal of previous analysis data to front of script
