@@ -3,6 +3,7 @@ import re
 import itertools
 import pickle
 import random
+import sqlite3
 
 
 def read_fasta(filepath: str, multi=False):
@@ -111,15 +112,6 @@ def dNdS(synonymity, synonymous_sites):
         return (nonsyn_subs/nonsyn_site_count)/(syn_subs/syn_site_count)
 
 
-def sqlite_test(id, dNdS_ratio):
-    import sqlite3
-    con = sqlite3.connect("db_test.db")
-    cur = con.cursor()
-    cur.execute(f"UPDATE metadata SET dNdS = '{dNdS_ratio}' WHERE ID = '{id}'")
-    con.commit()
-    con.close()
-
-
 def write_seperated(filepath: str, args: list, seperator="\t") -> None:
     with open(filepath, "w") as handle:
         for row in args:
@@ -191,6 +183,30 @@ def read_variant_records(filepath: str) -> list:
         variantion[0] = int(variantion[0])
     return variant_record
 
+
+def vr_to_table(filepath: str, variant_id: str, variant_record: list, header="(position, reference, variant)") -> None:
+    con = sqlite3.connect(filepath)
+    cur = con.cursor()
+    cur.execute(f"CREATE TABLE {variant_id} {header}")
+    cur.executemany(f"insert into {variant_id} values (?, ?, ?)", variant_record)
+    con.commit()
+    con.close()
+
+
+def search_vr_table(filepath: str, variant_id: str, condition: str) ->  list:
+    con = sqlite3.connect(filepath)
+    cur = con.cursor()
+    cur.execute(f"select * from {variant_id} where {condition}")
+    return cur.fetchall()
+
+
+
+def sqlite_test(id, dNdS_ratio):
+    con = sqlite3.connect("db_test.db")
+    cur = con.cursor()
+    cur.execute(f"UPDATE metadata SET dNdS = '{dNdS_ratio}' WHERE ID = '{id}'")
+    con.commit()
+    con.close()
 
 if __name__ == "__main__":
     pass

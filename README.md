@@ -13,8 +13,8 @@
 - <del>Reconstruct variant sequences from variant records and compare with test variant sequence</del>
     <del>- Automate testing on github</del>
 - Build SQL database and add variant records, two approaches:
-    - Either one table each per variant
-        - could be integrated into variant_record.py
+   - <del>Either one table each per variant</del>
+      - <del>could be integrated into variant_record.py</del>
     - Or one table containing all positions and variations
     - Test parallelization with both approaches
 - Add metadata as SQL table
