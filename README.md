@@ -1,10 +1,7 @@
 # Natural Selection
 ## Issues
-- test_variant_records() can produce substitutions from one base to itself
-- test.py main() looks messy
 - Add type hinting to functions
 - Testing: Instead of Gap-Match-Gap Stretcher Scoring prefers Gap-GapExtension-Mismatch. Leads to failed tests. Is that a Problem?
-    - Setting the gapextension score equal the gapopen score in the stretcher option seems to prevent tests from failing
 - In random variable records generated turing testing, a mismatch and an insert at consecutive positions might be switched around by stretcher
 
 ## Next Steps
@@ -14,7 +11,7 @@
 - <del>In run.sh move removal of previous analysis data to front of script</del>
 - Add function that writes (multi-)fasta files using Bio.SeqIO
 - <del>Reconstruct variant sequences from variant records and compare with test variant sequence</del>
-    - Automate testing on github
+    <del>- Automate testing on github</del>
 - Build SQL database and add variant records, two approaches:
     - Either one table each per variant
         - could be integrated into variant_record.py

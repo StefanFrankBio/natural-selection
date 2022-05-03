@@ -25,11 +25,11 @@ def main():
     with open(args.reference, "w") as handle:
         SeqIO.write(reference, handle, "fasta")
     for i in range(args.number):
-        with open(f"{args.output}/test_variant_{i}", "w") as handle:
+        with open(f"{args.output}/variant_sequence_{i}.fasta", "w") as handle:
             variant_record = nstools.test_variant_record(reference, args.type, args.length, args.variations, args.indels)
-            nstools.write_seperated(f"{args.record}/test_variant_{i}", variant_record)
+            #nstools.write_seperated(f"{args.record}/variant_sequence_{i}", variant_record)
             variant = nstools.reconstruct_variant(reference, variant_record)
-            variant = SeqRecord(Seq(variant), id=f"test_variant_{i}", description="")
+            variant = SeqRecord(Seq(variant), id=f"variant_sequence_{i}", description="")
             SeqIO.write(variant, handle, "fasta")
 
 
