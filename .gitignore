@@ -2,3 +2,4 @@ scripts/__pycache__
 .dump
 test_data/alignments
 test_data/error_variant_records
+example.db
