@@ -9,9 +9,9 @@ VR_DIR="${OUT_DIR}/variant_records"
 ERR_DIR="${OUT_DIR}/error_variant_records"
 
 
-rm -r $ALIGN_DIR
-rm -r $VR_DIR
-rm -r $ERR_DIR
+#rm -r $ALIGN_DIR
+#rm -r $VR_DIR
+#rm -r $ERR_DIR
 mkdir $ALIGN_DIR
 mkdir $VR_DIR
 mkdir $ERR_DIR
