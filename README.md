@@ -6,6 +6,7 @@
 - If a variant record contains no synonymous substitutions for a frame, it's dN/dS will be div/0
 
 ## Next Steps
+- Add BLAST as alternative for stretcher
 - Add mean position of nonsynonymous sites vs mean position of nonsynonymous substitutions as additional metric
 - <del>In run.sh add ability to handle individual fastas instead of multifasta for variant sequences</del>
     - <del>write test variants to individual files instead of multifasta</del>
