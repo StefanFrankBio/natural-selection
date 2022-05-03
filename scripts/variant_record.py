@@ -7,6 +7,7 @@ def parse_args():
     parser.add_argument("-a", "--alignment")
     parser.add_argument("-r", "--reference")
     parser.add_argument("-v", "--variants")
+    parser.add_argument("-d", "--database")
     parser.add_argument("-e", "--error")
     return parser.parse_args()
 
@@ -26,7 +27,7 @@ def main():
     reconstructed_variant = nstools.reconstruct_variant(reference.seq, variant_record)
     variant = nstools.read_fasta(f"{args.variants}/{alignment_records[0].id}.fasta")
     if variant.seq == reconstructed_variant:
-        nstools.vr_to_table("example.db", alignment_records[0].id, variant_record)
+        nstools.vr_to_table(args.database, alignment_records[0].id, variant_record)
     else:
         nstools.write_seperated(f"{args.error}/{alignment_records[0].id}", variant_record)
 

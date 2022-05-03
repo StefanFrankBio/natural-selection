@@ -3,6 +3,7 @@
 - Add type hinting to functions
 - Testing: Instead of Gap-Match-Gap Stretcher Scoring prefers Gap-GapExtension-Mismatch. Leads to failed tests. Is that a Problem?
 - In random variable records generated turing testing, a mismatch and an insert at consecutive positions might be switched around by stretcher
+- If a variant record contains no synonymous substitutions for a frame, it's dN/dS will be div/0
 
 ## Next Steps
 - Add mean position of nonsynonymous sites vs mean position of nonsynonymous substitutions as additional metric
@@ -12,19 +13,20 @@
 - Add function that writes (multi-)fasta files using Bio.SeqIO
 - <del>Reconstruct variant sequences from variant records and compare with test variant sequence</del>
     <del>- Automate testing on github</del>
-- Build SQL database and add variant records, two approaches:
+- <del>Build SQL database and add variant records, two approaches:</del>
    - <del>Either one table each per variant</del>
       - <del>could be integrated into variant_record.py</del>
-    - Or one table containing all positions and variations
-    - Test parallelization with both approaches
+    - <del>Or one table containing all positions and variations</del>
+    - <del>Test parallelization with both approaches</del>
 - Add metadata as SQL table
-- Add functionality to calculate dN/dS for whole genome in all frames
+- <del>Add functionality to calculate dN/dS for whole genome in all frames</del>
 - Add functionality to calculate dN/dS for a specified sampling date or date range
 - Add functionality to calculate dN/dS for stop-stop-ORFs
 - Add functionality to calculate dN/dS for sliding window over genome
 - Add functionality to read gene locations from annotation and calculate dN/dS for them
     - Add functionality to annotate genomes
-- Add testing based on a set of static sequences
+- <del>Add testing based on a set of static sequences</del>
+- Clean up dNdS.py and move recurring code to nstools.py
 
 ## Research Questions
 How high is the likelihood for a nonsynonymous substitution to occur at a nonsynonymous site?

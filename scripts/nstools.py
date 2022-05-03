@@ -89,9 +89,10 @@ def build_trans_table():
     return dict(zip(codons, aminos))
 
 
-def classify_substitutions(substitutions, codons, trans_table):
+def classify_substitutions(substitutions, codons, frame: int, trans_table):
     classification = []
     for position, _, nucleotide in substitutions:
+        position -= frame
         codon_idx = position // 3
         if codon_idx < len(codons):
             original_codon = codons[codon_idx]
