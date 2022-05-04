@@ -18,7 +18,7 @@ def main():
     alignment_records = nstools.read_fasta(args.alignment, True)
     aligned_reference = str(alignment_records[1].seq)
     aligned_variant = str(alignment_records[0].seq)
-    variant, insert_records = nstools.handle_inserts(aligned_reference, aligned_variant)
+    variant, aligned_reference, insert_records = nstools.handle_inserts(aligned_reference, aligned_variant)
     variant, deletion_records = nstools.handle_deletions(reference, variant)
     variant, ambig_records = nstools.handle_ambiguities(reference, variant)
     substitutions = nstools.find_substitutions(reference, variant)

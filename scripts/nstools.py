@@ -34,34 +34,36 @@ def count_synonymous_sites(bool_list):
     return [sum(bool_list[x*3:(x+1)*3])/3 for x in range(3)]
 
 
-def handle_inserts(reference, sequence):
-    sequence = list(sequence)
+def handle_inserts(reference, sequence, absolute_pos=0):
     insert_positions = [m.start() for m in re.finditer("-", reference)]
+    sequence = list(sequence)
+    reference = list(reference)
     insert_records = []
     offset = 0
     for i in insert_positions:
-        insert_records.append((i-offset, "ins", sequence[i-offset]))
+        insert_records.append((absolute_pos+i-offset, "ins", sequence[i-offset]))
         del sequence[i-offset]
+        del reference[i-offset]
         offset += 1
-    return "".join(sequence), insert_records
+    return "".join(sequence), "".join(reference), insert_records
 
 
-def handle_deletions(reference, sequence):
+def handle_deletions(reference, sequence, absolute_pos=0):
     deletion_positions = [m.start() for m in re.finditer("-", sequence)]
     sequence = list(sequence)
     deletion_records = []
     for i in deletion_positions:
-        deletion_records.append((i, reference[i], "del"))
+        deletion_records.append((absolute_pos+i, reference[i], "del"))
         sequence[i] = reference[i]
     return "".join(sequence), deletion_records
 
 
-def handle_ambiguities(reference, sequence):
+def handle_ambiguities(reference, sequence, absolute_pos=0):
     ambig_positions = list([m.start() for m in re.finditer("N", sequence)])
     sequence = list(sequence)
     ambig_records = []
     for i in ambig_positions:
-        ambig_records.append((i, reference[i], "N"))
+        ambig_records.append((absolute_pos+i, reference[i], "N"))
         sequence[i] = reference[i]
     return "".join(sequence), ambig_records
 
@@ -76,9 +78,9 @@ def unpickle_data(filepath):
         return pickle.load(handle)
 
 
-def find_substitutions(sequence1, sequence2):
+def find_substitutions(sequence1, sequence2, absolute_pos=0):
     xxx = zip(sequence1, sequence2)
-    return [(i, n[0], n[1]) for i, n in enumerate(xxx) if n[0] != n[1]]
+    return [(absolute_pos+i, n[0], n[1]) for i, n in enumerate(xxx) if n[0] != n[1]]
 
 
 def build_trans_table():
@@ -114,7 +116,7 @@ def dNdS(synonymity, synonymous_sites):
 
 
 def write_seperated(filepath: str, args: list, seperator="\t") -> None:
-    with open(filepath, "w") as handle:
+    with open(filepath, "a+") as handle:
         for row in args:
             print(*row, sep=seperator, file=handle)
 
@@ -188,7 +190,7 @@ def read_variant_records(filepath: str) -> list:
 def vr_to_table(filepath: str, variant_id: str, variant_record: list, header="(position, reference, variant)") -> None:
     con = sqlite3.connect(filepath)
     cur = con.cursor()
-    cur.execute(f"CREATE TABLE {variant_id} {header}")
+    cur.execute(f"CREATE TABLE IF NOT EXISTS {variant_id} {header}")
     cur.executemany(f"insert into {variant_id} values (?, ?, ?)", variant_record)
     con.commit()
     con.close()
@@ -208,6 +210,7 @@ def sqlite_test(id, dNdS_ratio):
     cur.execute(f"UPDATE metadata SET dNdS = '{dNdS_ratio}' WHERE ID = '{id}'")
     con.commit()
     con.close()
+
 
 if __name__ == "__main__":
     pass
