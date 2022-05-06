@@ -1,7 +1,2 @@
 scripts/__pycache__
-.dump
-test_data/alignments
-test_data/error_variant_records
-test_data/variant.db
-test_data/dNdS.tsv
-blast_test
+test_data

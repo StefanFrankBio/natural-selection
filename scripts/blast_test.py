@@ -11,6 +11,7 @@ def parse_args():
 
 
 def main():
+    print("A")
     args = parse_args()
     with open(args.blast, "r", ) as handle:
         csv_reader = csv.reader(handle, delimiter="\t")
@@ -27,7 +28,7 @@ def main():
                 substitutions = nstools.find_substitutions(reference, variant, absolute_pos)
                 variant_record = substitutions + insert_records + deletion_records + ambig_records
                 variant_record = nstools.sort_by_element(variant_record, 0)
-                nstools.write_seperated(f"{args.output}/{blast_record[0]}.tsv", variant_record)
+                nstools.write_seperated(f"{args.output}/{blast_record[0]}", variant_record)
                 #nstools.vr_to_table("blast_test/variant_record.db", f"'{blast_record[0]}'", variant_record)
 
 
